@@ -1,0 +1,52 @@
+{% extends 'default.html' %}
+
+{% block content %}
+<h1>Поиск новостей</h1>
+<form method="get" action="{% url 'news_search' %}">
+    <label for="q">Название:</label>
+    <input type="text" name="q" id="q" value="{{ request.GET.q }}">
+    
+    <label for="author">Автор:</label>
+    <input type="text" name="author" id="author" value="{{ request.GET.author }}">
+    
+    <label for="date">Позже даты:</label>
+    <input type="date" name="date" id="date" value="{{ request.GET.date }}">
+    
+    <button type="submit">Искать</button>
+</form>
+
+{% if posts %}
+    <h2>Результаты поиска</h2>
+    <ul>
+        {% for post in posts %}
+        <li>
+            <h3><a href="{% url 'news_detail' post.id %}">{{ post.title }}</a></h3>
+            <p>Автор: {{ post.author.user.username }}</p>
+            <p>Дата: {{ post.created_at|date:"d.m.Y" }}</p>
+            <p>{{ post.content|truncatechars:20 }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Пагинация -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if posts.has_previous %}
+                <a href="?page=1&q={{ request.GET.q }}&author={{ request.GET.author }}&date={{ request.GET.date }}">&laquo; Первая</a>
+                <a href="?page={{ posts.previous_page_number }}&q={{ request.GET.q }}&author={{ request.GET.author }}&date={{ request.GET.date }}">Предыдущая</a>
+            {% endif %}
+
+            <span class="current">
+                Страница {{ posts.number }} из {{ posts.paginator.num_pages }}.
+            </span>
+
+            {% if posts.has_next %}
+                <a href="?page={{ posts.next_page_number }}&q={{ request.GET.q }}&author={{ request.GET.author }}&date={{ request.GET.date }}">Следующая</a>
+                <a href="?page={{ posts.paginator.num_pages }}&q={{ request.GET.q }}&author={{ request.GET.author }}&date={{ request.GET.date }}">Последняя &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+{% else %}
+    <p>Новости не найдены.</p>
+{% endif %}
+{% endblock %}
