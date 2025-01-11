@@ -1,12 +1,15 @@
-from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView, DetailView
 from .models import Post
 
 
-def news_list(request):
-    posts = Post.objects.filter(post_type='NW').order_by('-created_at')
-    return render(request, 'news/news_list.html', {'posts': posts})
+class NewsListView(ListView):
+    model = Post
+    template_name = 'news/news_list.html'
+    context_object_name = 'posts'
+    queryset = Post.objects.filter(post_type='NW').order_by('-created_at')
 
 
-def news_detail(request, post_id):
-    post = get_object_or_404(Post, id=post_id)
-    return render(request, 'news/news_detail.html', {'post': post})
+class NewsDetailView(DetailView):
+    model = Post
+    template_name = 'news/news_detail.html'
+    context_object_name = 'post'
