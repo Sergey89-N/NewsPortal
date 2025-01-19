@@ -1,8 +1,11 @@
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.shortcuts import redirect
+from django.contrib.auth.models import Group
 from .models import Post
 
-
+# Новости
 class NewsListView(ListView):
     model = Post
     template_name = 'news/news_list.html'
@@ -10,12 +13,61 @@ class NewsListView(ListView):
     queryset = Post.objects.filter(post_type='NW').order_by('-created_at')
     paginate_by = 10
 
-
 class NewsDetailView(DetailView):
     model = Post
     template_name = 'news/news_detail.html'
     context_object_name = 'post'
 
+class NewsCreateView(PermissionRequiredMixin, CreateView):
+    model = Post
+    template_name = 'news/news_create.html'
+    fields = ['title', 'content', 'categories']
+    success_url = reverse_lazy('news_list')
+    permission_required = 'news.add_post'
+
+    def form_valid(self, form):
+        form.instance.post_type = 'NW'
+        form.instance.author = self.request.user.author
+        return super().form_valid(form)
+
+class NewsUpdateView(PermissionRequiredMixin, UpdateView):
+    model = Post
+    template_name = 'news/news_edit.html'
+    fields = ['title', 'content', 'categories']
+    success_url = reverse_lazy('news_list')
+    permission_required = 'news.change_post'
+
+class NewsDeleteView(DeleteView):
+    model = Post
+    template_name = 'news/news_delete.html'
+    success_url = reverse_lazy('news_list')
+
+# Статьи
+class ArticleCreateView(PermissionRequiredMixin, CreateView):
+    model = Post
+    template_name = 'news/article_create.html'
+    fields = ['title', 'content', 'categories']
+    success_url = reverse_lazy('news_list')
+    permission_required = 'news.add_post'
+
+    def form_valid(self, form):
+        form.instance.post_type = 'AR'
+        form.instance.author = self.request.user.author
+        return super().form_valid(form)
+
+class ArticleUpdateView(PermissionRequiredMixin, UpdateView):
+    model = Post
+    template_name = 'news/article_edit.html'
+    fields = ['title', 'content', 'categories']
+    success_url = reverse_lazy('news_list')
+    permission_required = 'news.change_post'
+
+class ArticleDeleteView(DeleteView):
+    model = Post
+    template_name = 'news/article_delete.html'
+    success_url = reverse_lazy('news_list')
+
+# Поиск
 class NewsSearchView(ListView):
     model = Post
     template_name = 'news/news_search.html'
@@ -24,9 +76,9 @@ class NewsSearchView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        query = self.request.GET.get('q') # поиск по названию
-        author = self.request.GET.get('author') # поиск по автору
-        date = self.request.GET.get('date') # поиск по дате
+        query = self.request.GET.get('q')
+        author = self.request.GET.get('author')
+        date = self.request.GET.get('date')
 
         if query:
             queryset = queryset.filter(title__icontains=query)
@@ -37,52 +89,19 @@ class NewsSearchView(ListView):
 
         return queryset.filter(post_type='NW').order_by('-created_at')
 
+# Редактирование профиля
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+    model = User
+    template_name = 'profile_edit.html'
+    fields = ['username', 'first_name', 'last_name', 'email']
+    success_url = reverse_lazy('profile')
 
-class NewsCreateView(CreateView):
-    model = Post
-    template_name = 'news/news_create.html'
-    fields = ['title', 'content', 'categories'] # поля для создания новости
-    success_url = reverse_lazy('news_list') # перенаправление
+    def get_object(self, queryset=None):
+        return self.request.user
 
-    def form_valid(self, form):
-        form.instance.post_type = 'NW'
-        form.instnce.author = self.request.user.author # устанавливаем автора
-        return super().form_valid(form)
-
-
-class NewsUpdateView(UpdateView):
-    model = Post
-    template_name = 'news/news_edit.html'
-    fields = ['title', 'content', 'categories']  # поля для редактирования
-    success_url = reverse_lazy('news_list')  # перенаправление
-
-
-class NewsDeleteView(DetailView):
-    model = Post
-    template_name = 'news/news_delete.html'
-    success_url = reverse_lazy('news_list')
-
-
-class ArticleCreateView(CreateView):
-    model = Post
-    template_name = 'news/article_create.html'
-    fields = ['title', 'content', 'categories']
-    success_url = reverse_lazy('news_list')
-
-    def form_valid(self, form):
-        form.instance.post_type = 'AR'
-        form.instance.author = self.request.user.author
-        return super().form_valid(form)
-
-
-class ArticleUpdateView(UpdateView):
-    model = Post
-    template_name = 'news/article_edit.html'
-    fields = ['title', 'content', 'categories']
-    success_url = reverse_lazy('news_list')
-
-
-class ArticleDeleteView(DetailView):
-    model = Post
-    template_name = 'news/article_delete.html'
-    success_url =reverse_lazy('news_list')
+# Стать автором
+@login_required
+def become_author(request):
+    authors_group = Group.objects.get(name='authors')
+    request.user.groups.add(authors_group)
+    return redirect('news_list')
