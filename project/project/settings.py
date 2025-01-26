@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from celery.schedules import crontab
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -134,6 +135,16 @@ AUTHENTICATION_BACKENDS = [
 LOGIN_URL = 'account_login'
 LOGIN_REDIRECT_URL = 'news_list'
 LOGOUT_REDIRECT_URL = 'news_list'
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_TIMEZONE = 'UTC'
+CELERY_BEAT_SCHEDULE = {
+    'send-weekly-newsletter': {
+        'task': 'news.tasks.send_weekly_newsletter',
+        'schedule': crontab(day_of_week='mon', hour=8, minute=0),
+    },
+}
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True

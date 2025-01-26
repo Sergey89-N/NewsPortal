@@ -1,0 +1,3 @@
+<h1>Новая статья в категории {{ category.name }}</h1>
+<p>{{ post.preview }}</p>
+<a href="http://{{ domain }}{% url 'news_detail' post.id %}">Читать статью</a>

@@ -1,0 +1,8 @@
+<h1>Новые статьи в категории {{ category.name }} за неделю</h1>
+<ul>
+    {% for post in new_posts %}
+    <li>
+        <a href="http://{{ domain }}{% url 'news_detail' post.id %}">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+</ul>

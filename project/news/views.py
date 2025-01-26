@@ -2,9 +2,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from django.shortcuts import redirect
 from django.contrib.auth.models import Group, User
 from .models import Post
+from django.shortcuts import get_object_or_404, redirect
+from .models import Category
+
 
 # Новости
 class NewsListView(ListView):
@@ -106,3 +108,15 @@ def become_author(request):
     authors_group = Group.objects.get(name='authors')
     request.user.groups.add(authors_group)
     return redirect('news_list')
+
+@login_required
+def subscribe(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+    category.subscribers.add(request.user)
+    return redirect('category_detail', category_id=category_id)
+
+@login_required
+def unsubscribe(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+    category.subscribers.remove(request.user)
+    return redirect('category_detail', category_id=category_id)
