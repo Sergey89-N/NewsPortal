@@ -4,8 +4,11 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.urls import reverse_lazy
 from django.contrib.auth.models import Group, User
 from .models import Post
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from .models import Category
+from .tasks import send_new_post_notification
+
+
 
 
 # Новости
@@ -32,6 +35,9 @@ class NewsCreateView(PermissionRequiredMixin, CreateView):
         form.instance.post_type = 'NW'
         form.instance.author = self.request.user.author
         return super().form_valid(form)
+        send_new_post_notification.delay(self.object.pk)
+        return response
+
 
 class NewsUpdateView(PermissionRequiredMixin, UpdateView):
     model = Post
@@ -57,6 +63,9 @@ class ArticleCreateView(PermissionRequiredMixin, CreateView):
         form.instance.post_type = 'AR'
         form.instance.author = self.request.user.author
         return super().form_valid(form)
+        send_new_post_notification.delay(self.object.pk)
+        return response
+
 
 class ArticleUpdateView(PermissionRequiredMixin, UpdateView):
     model = Post

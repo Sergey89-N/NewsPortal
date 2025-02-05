@@ -4,6 +4,7 @@ from django.contrib.auth.models import User, Group
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from .models import Post
+from django.conf import settings
 
 @receiver(post_save, sender=User)
 def add_user_to_common_group(sender, instance, created, **kwargs):
@@ -44,3 +45,19 @@ def send_welcome_email(sender, instance, created, **kwargs):
             recipient_list=[instance.email],
             html_message=message,
         )
+
+@receiver(post_save, sender=User)
+def add_user_to_common_group_and_welcome(sender, instance, created, **kwargs):
+    if created:
+        try:
+            common_group = Group.objects.get(name='common')
+            instance.groups.add(common_group)
+        except Group.DoesNotExist:
+            print("Группа 'common' не найдена.")
+        subject = "Добро пожаловать в NewsPortal!"
+        message = (
+            f"Привет, {instance.username}!\n\n"
+            "Спасибо за регистрацию в NewsPortal. Мы рады видеть вас среди наших пользователей.\n\n"
+            "С уважением, команда NewsPortal"
+        )
+        send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [instance.email])
