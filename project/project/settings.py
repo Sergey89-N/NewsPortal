@@ -77,6 +77,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.join(BASE_DIR, 'cache_files'),
+        'TIMEOUT': None,
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -143,7 +150,6 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
 
-from celery.schedules import crontab
 CELERY_BEAT_SCHEDULE = {
     'send-weekly-newsletter': {
         'task': 'news.tasks.send_weekly_newsletter',

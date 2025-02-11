@@ -2,16 +2,19 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.core.cache import cache
 from django.contrib.auth.models import Group, User
 from .models import Post
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import Category
 from .tasks import send_new_post_notification
-
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 
 
 
 # Новости
+@method_decorator(cache_page(60 * 5), name='dispatch')
 class NewsListView(ListView):
     model = Post
     template_name = 'news/news_list.html'
@@ -19,10 +22,22 @@ class NewsListView(ListView):
     queryset = Post.objects.filter(post_type='NW').order_by('-created_at')
     paginate_by = 10
 
+
 class NewsDetailView(DetailView):
     model = Post
     template_name = 'news/news_detail.html'
     context_object_name = 'post'
+
+    def get(self, request, *args, **kwargs):
+        article = self.get_object()
+        cache_key = f'article_detail_{article.pk}_{int(article.updated_at.timestamp())}'
+        cached_response = cache.get(cache_key)
+        if cached_response:
+            return cached_response
+        response = super().get(request, *args, **kwargs)
+        cache.set(cache_key, response, None)
+        return response
+
 
 class NewsCreateView(PermissionRequiredMixin, CreateView):
     model = Post
@@ -80,6 +95,7 @@ class ArticleDeleteView(DeleteView):
     success_url = reverse_lazy('news_list')
 
 # Поиск
+@method_decorator(cache_page(60 * 5), name='dispatch')
 class NewsSearchView(ListView):
     model = Post
     template_name = 'news/news_search.html'
