@@ -1,2 +1,4 @@
-<h1>Добро пожаловать, {{ user.username }}!</h1>
-<p>Спасибо за регистрацию в NewsPortal.</p>
+{% load i18n %}
+
+<h1>{% trans "Welcome" %}, {{ user.username }}!</h1>
+<p>{% trans "Thank you for registering with NewsPortal" %}.</p>

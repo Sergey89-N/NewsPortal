@@ -1,0 +1,260 @@
+2025-03-21 19:18:02,346 ERROR D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\utils\log.py Internal Server Error: /news/ (<class 'django.template.exceptions.TemplateSyntaxError'>, TemplateSyntaxError("Invalid block tag on line 4: 'trans', expected 'endblock'. Did you forget to register or load this tag?"), <traceback object at 0x000001C8ABAB0840>)
+Traceback (most recent call last):
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 510, in parse
+    compile_func = self.tags[command]
+KeyError: 'trans'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 563, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 4: 'trans', expected 'endblock'. Did you forget to register or load this tag?
+2025-03-21 19:18:02,350 ERROR D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\core\servers\basehttp.py "GET /news/ HTTP/1.1" 500 196423 None
+2025-03-21 19:18:58,390 ERROR D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\utils\log.py Internal Server Error: /articles/create/ (<class 'django.template.exceptions.TemplateSyntaxError'>, TemplateSyntaxError("Invalid block tag on line 4: 'trans', expected 'endblock'. Did you forget to register or load this tag?"), <traceback object at 0x000001C8AB8C0E80>)
+Traceback (most recent call last):
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 510, in parse
+    compile_func = self.tags[command]
+KeyError: 'trans'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 563, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 4: 'trans', expected 'endblock'. Did you forget to register or load this tag?
+2025-03-21 19:18:58,392 ERROR D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\core\servers\basehttp.py "GET /articles/create/ HTTP/1.1" 500 170690 None
+2025-03-26 21:20:18,489 ERROR D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\utils\log.py Internal Server Error: /news/ (<class 'django.template.exceptions.TemplateSyntaxError'>, TemplateSyntaxError("Invalid block tag on line 4: 'trans', expected 'endblock'. Did you forget to register or load this tag?"), <traceback object at 0x00000281EE0D5B40>)
+Traceback (most recent call last):
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 510, in parse
+    compile_func = self.tags[command]
+KeyError: 'trans'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 563, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 4: 'trans', expected 'endblock'. Did you forget to register or load this tag?
+2025-03-26 21:20:18,498 ERROR D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\core\servers\basehttp.py "GET /news/ HTTP/1.1" 500 196566 None
+2025-03-26 21:37:36,027 ERROR D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\utils\log.py Internal Server Error: /news/ (<class 'django.template.exceptions.TemplateSyntaxError'>, TemplateSyntaxError('Unknown argument for \'trans\' tag: \'list\'. The only options available are \'noop\', \'context\' "xxx", and \'as VAR\'.'), <traceback object at 0x000001F884E43200>)
+Traceback (most recent call last):
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\templatetags\i18n.py", line 443, in do_translate
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: Unknown argument for 'trans' tag: 'list'. The only options available are 'noop', 'context' "xxx", and 'as VAR'.
+2025-03-26 21:37:36,036 ERROR D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\core\servers\basehttp.py "GET /news/ HTTP/1.1" 500 199246 None
+2025-03-26 21:39:15,735 ERROR D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\utils\log.py Internal Server Error: /news/create/ (<class 'django.template.exceptions.TemplateSyntaxError'>, TemplateSyntaxError("Invalid block tag on line 4: 'trans', expected 'endblock'. Did you forget to register or load this tag?"), <traceback object at 0x000001F884E26D80>)
+Traceback (most recent call last):
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 510, in parse
+    compile_func = self.tags[command]
+KeyError: 'trans'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\template\base.py", line 563, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 4: 'trans', expected 'endblock'. Did you forget to register or load this tag?
+2025-03-26 21:39:15,737 ERROR D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\core\servers\basehttp.py "GET /news/create/ HTTP/1.1" 500 170553 None

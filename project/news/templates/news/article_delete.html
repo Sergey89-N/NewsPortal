@@ -1,11 +1,12 @@
 {% extends 'default.html' %}
+{% load i18n %}
 
 {% block content %}
-<h1>Удалить статью</h1>
-<p>Вы уверены, что хотите удалить статью "{{ object.title }}"?</p>
+<h1>{% trans "Delete article" %}</h1>
+<p>{% trans "Are you sure you want to delete the article" %}? "{{ object.title }}"?</p>
 <form method="post">
     {% csrf_token %}
-    <button type="submit">Удалить</button>
+    <button type="submit">{% trans "Delete" %}</button>
 </form>
-<a href="{% url 'news_list' %}">Назад к списку новостей</a>
+<a href="{% url 'news_list' %}">{% trans "Back to news list" %}</a>
 {% endblock %}

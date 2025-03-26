@@ -1,11 +1,12 @@
 {% extends 'default.html' %}
+{% load i18n %}
 
 {% block content %}
-<h1>Создать новость</h1>
+<h1>{% trans "Create news" %}</h1>
 <form method="post">
     {% csrf_token %}
     {{form.as_p}}
-    <button type="submit">Создать</button>
+    <button type="submit">{% trans "Create" %}</button>
 </form>
-<a href="{% url 'news_list' %}">Назад к списку новостей</a>
+<a href="{% url 'news_list' %}">{% trans "Back to news list" %}</a>
 {% endblock %}

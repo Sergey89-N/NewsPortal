@@ -1,12 +1,12 @@
 {% extends "account/base.html" %}
 
-{% block card_title %}Вход{% endblock %}
+{% block card_title %}{% trans Enter %}{% endblock %}
 
 {% block content %}
 <form method="post" action="{% url 'account_login' %}">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Войти</button>
+    <button type="submit" class="btn btn-primary">{% trans Login %}</button>
 </form>
-<p class="mt-3">Нет аккаунта? <a href="{% url 'account_signup' %}">Зарегистрируйтесь</a>.</p>
+<p class="mt-3">{% trans No account %}? <a href="{% url 'account_signup' %}">{% trans Register %}</a>.</p>
 {% endblock %}

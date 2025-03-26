@@ -1,12 +1,13 @@
 {% extends 'default.html' %}
+{% load i18n %}
 
 {% block content %}
 <h1>{{ category.name }}</h1>
 {% if user.is_authenticated %}
     {% if user in category.subscribers.all %}
-        <a href="{% url 'unsubscribe' category.id %}">Отписаться</a>
+        <a href="{% url 'unsubscribe' category.id %}">{% trans "Unsubscribe" %}</a>
     {% else %}
-        <a href="{% url 'subscribe' category.id %}">Подписаться</a>
+        <a href="{% url 'subscribe' category.id %}">{% trans "Subscribe" %}</a>
     {% endif %}
 {% endif %}
 {% endblock %}
