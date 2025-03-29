@@ -258,3 +258,19 @@ Traceback (most recent call last):
     raise self.error(
 django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 4: 'trans', expected 'endblock'. Did you forget to register or load this tag?
 2025-03-26 21:39:15,737 ERROR D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\core\servers\basehttp.py "GET /news/create/ HTTP/1.1" 500 170553 None
+2025-03-29 21:48:52,620 ERROR D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\utils\log.py Internal Server Error: / (<class 'AttributeError'>, AttributeError("'WSGIRequest' object has no attribute 'user'"), <traceback object at 0x000001B9653DC680>)
+Traceback (most recent call last):
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Users\Admin\DjangoProject\NewsPortal\NewsPortal\project\news\middleware.py", line 10, in __call__
+    if request.user.is_authenticated and hasattr(request.user, 'author'):
+AttributeError: 'WSGIRequest' object has no attribute 'user'
+2025-03-29 21:48:52,632 ERROR D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\core\servers\basehttp.py "GET / HTTP/1.1" 500 63239 None
+2025-03-29 21:48:53,079 ERROR D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\utils\log.py Internal Server Error: /favicon.ico (<class 'AttributeError'>, AttributeError("'WSGIRequest' object has no attribute 'user'"), <traceback object at 0x000001B96578D500>)
+Traceback (most recent call last):
+  File "D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Users\Admin\DjangoProject\NewsPortal\NewsPortal\project\news\middleware.py", line 10, in __call__
+    if request.user.is_authenticated and hasattr(request.user, 'author'):
+AttributeError: 'WSGIRequest' object has no attribute 'user'
+2025-03-29 21:48:53,080 ERROR D:\Users\Admin\DjangoProject\project_dir\.venv\lib\site-packages\django\core\servers\basehttp.py "GET /favicon.ico HTTP/1.1" 500 63142 None

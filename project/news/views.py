@@ -2,6 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from .models import Author
+from .forms import AuthorForm
 from django.core.cache import cache
 from django.contrib.auth.models import Group, User
 from .models import Post
@@ -10,7 +12,6 @@ from .models import Category
 from .tasks import send_new_post_notification
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
-
 
 
 # Новости
@@ -119,13 +120,14 @@ class NewsSearchView(ListView):
 
 # Редактирование профиля
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
-    model = User
+    model = Author
+    form_class = AuthorForm
     template_name = 'profile_edit.html'
     fields = ['username', 'first_name', 'last_name', 'email']
     success_url = reverse_lazy('profile')
 
     def get_object(self, queryset=None):
-        return self.request.user
+        return self.request.user.author
 
 # Стать автором
 @login_required

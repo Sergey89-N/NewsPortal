@@ -1,12 +1,13 @@
-{% load i18n cache %}
+{% load i18n cache theme_tags static %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% trans "News Portal" %}</title>
+    <link rel="stylesheet" href="{% static 'css/common.css' %}">
 </head>
-<body>
+<body class="{% get_theme as theme %}{{ theme }}">
     <header>
         <div class="language-switcher" style="float: right;">
             <form action="{% url 'set_language' %}" method="post">

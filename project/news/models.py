@@ -1,12 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
+import pytz
 
-
+TIMEZONE_CHOICES = [(tz, tz) for tz in pytz.common_timezones]
 
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     rating = models.IntegerField(default=0)
+    timezone = models.CharField(max_length=32, choices=TIMEZONE_CHOICES, default='UTC')
 
     def update_rating(self):
         # Суммарный рейтинг каждой статьи автора умножается на 3
@@ -17,6 +19,9 @@ class Author(models.Model):
 
         # Суммарный рейтинг всех комментариев к статьям автора
         post_comment_rating = sum(comment.rating for post in self.post_set.all() for comment in post.comment_set.all())
+
+    def __str__(self):
+        return self.user.username
 
 
 class Category(models.Model):
